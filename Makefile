@@ -1,6 +1,6 @@
 install:
-	@ansible-galaxy collection install -r $(CURDIR)/requirements.yml -p $(CURDIR)/vendor --force
+	@ansible-galaxy collection install -r $(CURDIR)/ansible/requirements.yml -p $(CURDIR)/ansible/vendor --force
 
 run:
-	@ansible-playbook $(CURDIR)/playbooks/run.yml --ask-become-pass
+	@ansible-playbook $(CURDIR)/ansible/playbooks/run.yml --ask-become-pass
 	

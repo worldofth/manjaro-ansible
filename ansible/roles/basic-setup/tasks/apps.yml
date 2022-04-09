@@ -7,4 +7,4 @@
 - name: Install snap app packages
   snap:
     name: "{{ install_snap_apps }}"
-    state: latest
+    state: present
