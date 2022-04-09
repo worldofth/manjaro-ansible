@@ -1,6 +1,6 @@
 #! /bin/bash
 
-pacman -S python3
+sudo pacman -S python3 make
 pip3 install ansible
 make install
 make run

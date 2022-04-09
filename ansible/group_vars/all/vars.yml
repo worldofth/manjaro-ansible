@@ -5,7 +5,7 @@ install_apps:
   - thunderbird
   - steam
   - lutris
-install_aur_apps:
+install_snap_apps:
   - spotify
 cli_apps:
   - stow
@@ -15,4 +15,3 @@ cli_apps:
   - procs
   - sd
   - ripgrep
-color_scheme: BreathDark

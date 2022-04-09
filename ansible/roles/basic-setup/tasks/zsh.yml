@@ -5,6 +5,8 @@
     state: latest
 
 - name: Install oh-my-zsh
+  become: yes
+  become_user: "{{ username }}"
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: "/home/{{ username }}/.oh-my-zsh"
@@ -12,6 +14,8 @@
     update: yes
 
 - name: Install zsh syntax highlighting
+  become: yes
+  become_user: "{{ username }}"
   git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: "/home/{{ username }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
@@ -19,6 +23,8 @@
     update: yes
 
 - name: Install zsh autosuggestions
+  become: yes
+  become_user: "{{ username }}"
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
     dest: "/home/{{ username }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
@@ -45,16 +51,22 @@
     version: v0.39.1
 
 - name: clone dotfiles
+  become: yes
+  become_user: "{{ username }}"
   git:
-    repo: git@github.com:worldofth/dotfiles.git
+    repo: https://github.com/worldofth/dotfiles
     dest: "/home/{{ username }}/dotfiles"
     clone: yes
     update: yes
 
 - name: make dotfile install executable
+  become: yes
+  become_user: "{{ username }}"
   file:
-    path: ~/dotfiles/install.sh
+    path: "/home/{{ username }}/dotfiles/install.sh"
     mode: '+x'
 
 - name: run dotfile install
-  script: ~/dotfiles/install.sh
+  become: yes
+  become_user: "{{ username }}"
+  shell: "cd /home/{{ username }}/dotfiles/ && ./install.sh"
