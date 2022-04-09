@@ -5,6 +5,7 @@ install_apps:
   - thunderbird
   - steam
   - lutris
+  - vlc
 install_snap_apps:
   - spotify
 cli_apps:
