@@ -1,0 +1,11 @@
+---
+- name: Install app packages
+  pacman:
+    name: "{{ install_apps }}"
+    state: latest
+
+- name: Install aur app packages
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: "{{ install_aur_apps }}"

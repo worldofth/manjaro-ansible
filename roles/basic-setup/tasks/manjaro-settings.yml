@@ -1,0 +1,17 @@
+---
+- name: turn off lockscreen
+  blockinfile:
+    path: ~/.config/kscreenlockerrc
+    block: |
+
+      [Daemon]
+      Autolock=false
+      LockOnResume=false
+
+- name: Check Colour Scheme
+  command: grep "ColorScheme=" ~/.config/kdeglobals | sed 's,ColorScheme=,,g'
+  register: colorScheme
+
+- name: Change Colour Scheme
+  command: plasma-apply-colorscheme "{{ color_scheme }}"
+  when: "colorScheme.stdout != {{ color_scheme }}"

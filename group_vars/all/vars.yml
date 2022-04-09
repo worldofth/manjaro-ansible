@@ -1,0 +1,18 @@
+username: tom
+install_apps:
+  - vscode
+  - discord
+  - thunderbird
+  - steam
+  - lutris
+install_aur_apps:
+  - spotify
+cli_apps:
+  - stow
+  - bat
+  - exa
+  - fd
+  - procs
+  - sd
+  - ripgrep
+color_scheme: BreathDark
