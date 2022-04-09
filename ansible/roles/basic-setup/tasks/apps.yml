@@ -4,7 +4,7 @@
     name: "{{ install_apps }}"
     state: latest
 
-- name: Install aur app packages
+- name: Install snap app packages
   snap:
     name: "{{ install_snap_apps }}"
     state: latest
