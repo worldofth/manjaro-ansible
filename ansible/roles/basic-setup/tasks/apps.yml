@@ -1,56 +1,51 @@
 ---
-# - name: Install app packages
-#   pacman:
-#     name: "{{ install_apps }}"
-#     state: latest
+- name: Install app packages
+  pacman:
+    name: "{{ install_apps }}"
+    state: latest
 
-# - name: Install snap app packages
-#   snap:
-#     name: "{{ install_snap_apps }}"
-#     state: present
+- name: Install wine deps
+  pacman:
+    name: "{{ wine_deps }}"
+    state: present
+    extra_args: '--needed'
 
-# - name: Download Tabby terminal
-#   get_url:
-#     url: "https://github.com/Eugeny/tabby/releases/download/v{{ tabby_version }}/tabby-{{ tabby_version }}-linux.pacman"
-#     dest: "/home/{{ username }}"
+- name: Install snap app packages
+  snap:
+    name: "{{ install_snap_apps }}"
+    state: present
 
-# - name: install Tabby
-#   pacman:
-#     name: "/home/{{ username }}/tabby-{{ tabby_version }}-linux.pacman"
+- name: Download Tabby terminal
+  get_url:
+    url: "https://github.com/Eugeny/tabby/releases/download/v{{ tabby_version }}/tabby-{{ tabby_version }}-linux.pacman"
+    dest: "/home/{{ username }}"
 
-# - name: download PIA
-#   get_url:
-#     url: "https://installers.privateinternetaccess.com/download/{{ ansible_run_file }}"
-#     dest: "/home/{{ username }}"
-#     owner: "{{ username }}"
-#     mode: '+x'
+- name: install Tabby
+  pacman:
+    name: "/home/{{ username }}/tabby-{{ tabby_version }}-linux.pacman"
 
-- name: run pia install
+- name: download PIA
+  get_url:
+    url: "https://installers.privateinternetaccess.com/download/{{ ansible_run_file }}"
+    dest: "/home/{{ username }}"
+    owner: "{{ username }}"
+    mode: '+x'
+
+- name: install virtualbox
+  pacman:
+    name: 
+      - virtualbox 
+      - "linux{{ linux_kernal }}-virtualbox-host-modules"
+    state: present
+
+- name: add user to vboxers group
+  user:
+    name: "{{ username }}"
+    groups: vboxusers
+    append: yes
+
+- name: Install genymotion
   become: yes
-  become_user: "{{ username }}"
-  shell: "/home/{{ username }}/{{ ansible_run_file }}"
-  ignore_errors: yes
-  register: piainstall
-
-- name: debug
-  debug:
-    var: piainstall
-
-# - name: install virtualbox
-#   pacman:
-#     name: 
-#       - virtualbox 
-#       - "linux{{ linux_kernal }}-virtualbox-host-modules"
-#     state: present
-
-# - name: add user to vboxers group
-#   user:
-#     name: "{{ username }}"
-#     groups: vboxusers
-#     append: yes
-
-# - name: Install genymotion
-#   become: yes
-#   become_user: aur_builder
-#   kewlfft.aur.aur:
-#     name: genymotion
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: genymotion
