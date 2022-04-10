@@ -17,3 +17,20 @@
 - name: install Tabby
   pacman:
     name: "/home/{{ username }}/tabby-1.0.174-linux.pacman"
+
+- name: download PIA
+  get_url:
+    url: https://installers.privateinternetaccess.com/download/pia-linux-3.3.1-06924.run
+    dest: "/home/{{ username }}"
+
+- name: make pia run executable
+  become: yes
+  become_user: "{{ username }}"
+  file:
+    path: "/home/{{ username }}/pia-linux-3.3.1-06924.run"
+    mode: '+x'
+
+- name: run pia install
+  become: yes
+  become_user: "{{ username }}"
+  shell: "cd /home/{{ username }}/ && ./pia-linux-3.3.1-06924.run"
