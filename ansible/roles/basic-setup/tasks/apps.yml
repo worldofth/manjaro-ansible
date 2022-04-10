@@ -1,36 +1,56 @@
 ---
-- name: Install app packages
-  pacman:
-    name: "{{ install_apps }}"
-    state: latest
+# - name: Install app packages
+#   pacman:
+#     name: "{{ install_apps }}"
+#     state: latest
 
-- name: Install snap app packages
-  snap:
-    name: "{{ install_snap_apps }}"
-    state: present
+# - name: Install snap app packages
+#   snap:
+#     name: "{{ install_snap_apps }}"
+#     state: present
 
-- name: Download Tabby terminal
-  get_url:
-    url: https://github.com/Eugeny/tabby/releases/download/v1.0.174/tabby-1.0.174-linux.pacman
-    dest: "/home/{{ username }}"
+# - name: Download Tabby terminal
+#   get_url:
+#     url: "https://github.com/Eugeny/tabby/releases/download/v{{ tabby_version }}/tabby-{{ tabby_version }}-linux.pacman"
+#     dest: "/home/{{ username }}"
 
-- name: install Tabby
-  pacman:
-    name: "/home/{{ username }}/tabby-1.0.174-linux.pacman"
+# - name: install Tabby
+#   pacman:
+#     name: "/home/{{ username }}/tabby-{{ tabby_version }}-linux.pacman"
 
-- name: download PIA
-  get_url:
-    url: https://installers.privateinternetaccess.com/download/pia-linux-3.3.1-06924.run
-    dest: "/home/{{ username }}"
-
-- name: make pia run executable
-  become: yes
-  become_user: "{{ username }}"
-  file:
-    path: "/home/{{ username }}/pia-linux-3.3.1-06924.run"
-    mode: '+x'
+# - name: download PIA
+#   get_url:
+#     url: "https://installers.privateinternetaccess.com/download/{{ ansible_run_file }}"
+#     dest: "/home/{{ username }}"
+#     owner: "{{ username }}"
+#     mode: '+x'
 
 - name: run pia install
   become: yes
   become_user: "{{ username }}"
-  shell: "cd /home/{{ username }}/ && ./pia-linux-3.3.1-06924.run"
+  shell: "/home/{{ username }}/{{ ansible_run_file }}"
+  ignore_errors: yes
+  register: piainstall
+
+- name: debug
+  debug:
+    var: piainstall
+
+# - name: install virtualbox
+#   pacman:
+#     name: 
+#       - virtualbox 
+#       - "linux{{ linux_kernal }}-virtualbox-host-modules"
+#     state: present
+
+# - name: add user to vboxers group
+#   user:
+#     name: "{{ username }}"
+#     groups: vboxusers
+#     append: yes
+
+# - name: Install genymotion
+#   become: yes
+#   become_user: aur_builder
+#   kewlfft.aur.aur:
+#     name: genymotion
