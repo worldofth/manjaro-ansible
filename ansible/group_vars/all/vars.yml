@@ -6,6 +6,7 @@ install_apps:
   - steam
   - lutris
   - vlc
+  - piper
 install_snap_apps:
   - spotify
 cli_apps:
