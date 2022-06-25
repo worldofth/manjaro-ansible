@@ -1,6 +1,5 @@
 username: tom
 install_apps:
-  - vscode
   - discord
   - thunderbird
   - steam
