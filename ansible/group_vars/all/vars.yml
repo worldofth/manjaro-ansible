@@ -68,7 +68,7 @@ wine_deps:
 
 # used to install virtualbox host modules
 linux_kernal: 515
-tabby_version: 1.0.174
+tabby_version: 1.0.179
 ansible_run_file: pia-linux-3.3.1-06924.run
 
 devices:

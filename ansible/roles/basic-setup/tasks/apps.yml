@@ -31,21 +31,3 @@
     owner: "{{ username }}"
     mode: '+x'
 
-- name: install virtualbox
-  pacman:
-    name: 
-      - virtualbox 
-      - "linux{{ linux_kernal }}-virtualbox-host-modules"
-    state: present
-
-- name: add user to vboxers group
-  user:
-    name: "{{ username }}"
-    groups: vboxusers
-    append: yes
-
-- name: Install genymotion
-  become: yes
-  become_user: aur_builder
-  kewlfft.aur.aur:
-    name: genymotion

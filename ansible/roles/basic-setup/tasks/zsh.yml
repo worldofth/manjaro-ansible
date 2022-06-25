@@ -5,7 +5,7 @@
     state: latest
 
 - name: Install oh-my-zsh
-  become: yes
+  become: true
   become_user: "{{ username }}"
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
@@ -14,7 +14,7 @@
     update: yes
 
 - name: Install zsh syntax highlighting
-  become: yes
+  become: true
   become_user: "{{ username }}"
   git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
@@ -23,7 +23,7 @@
     update: yes
 
 - name: Install zsh autosuggestions
-  become: yes
+  become: true
   become_user: "{{ username }}"
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
@@ -32,7 +32,7 @@
     update: yes
 
 - name: Install Fira code nerd font
-  become: yes
+  become: true
   become_user: aur_builder
   kewlfft.aur.aur:
     name: nerd-fonts-fira-code
@@ -51,7 +51,7 @@
     version: v0.39.1
 
 - name: clone dotfiles
-  become: yes
+  become: true
   become_user: "{{ username }}"
   git:
     repo: https://github.com/worldofth/dotfiles
@@ -60,13 +60,13 @@
     update: yes
 
 - name: make dotfile install executable
-  become: yes
+  become: true
   become_user: "{{ username }}"
   file:
     path: "/home/{{ username }}/dotfiles/install.sh"
     mode: '+x'
 
 - name: run dotfile install
-  become: yes
+  become: true
   become_user: "{{ username }}"
   shell: "cd /home/{{ username }}/dotfiles/ && ./install.sh"
