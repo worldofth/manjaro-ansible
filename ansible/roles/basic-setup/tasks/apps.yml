@@ -17,12 +17,12 @@
 
 - name: Download Tabby terminal
   get_url:
-    url: "https://github.com/Eugeny/tabby/releases/download/v{{ tabby_version }}/tabby-{{ tabby_version }}-linux.pacman"
+    url: "https://github.com/Eugeny/tabby/releases/download/v{{ tabby_version }}/tabby-{{ tabby_version }}-linux-x64.pacman"
     dest: "/home/{{ username }}"
 
 - name: install Tabby
   pacman:
-    name: "/home/{{ username }}/tabby-{{ tabby_version }}-linux.pacman"
+    name: "/home/{{ username }}/tabby-{{ tabby_version }}-linux-x64.pacman"
 
 - name: download PIA
   get_url:
