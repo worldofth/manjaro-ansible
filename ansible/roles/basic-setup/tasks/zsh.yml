@@ -58,6 +58,7 @@
     dest: "/home/{{ username }}/dotfiles"
     clone: yes
     update: yes
+    version: manjaro
 
 - name: make dotfile install executable
   become: true
