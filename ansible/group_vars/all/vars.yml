@@ -8,6 +8,7 @@ install_apps:
   - piper
 install_snap_apps:
   - spotify
+  - notion-snap
 cli_apps:
   - stow
   - bat
