@@ -76,3 +76,13 @@ devices:
     mount: /games
   - device: /dev/nvme0n1p3
     mount: /data
+
+symlinks:
+  - from: /data/Documents
+    to: "/home/{{username}}/Documents"
+  - from: /data/Downloads
+    to: "/home/{{username}}/Downloads"
+  - from: /data/Music
+    to: "/home/{{username}}/Music"
+  - from: /data/Pictures
+    to: "/home/{{username}}/Pictures"

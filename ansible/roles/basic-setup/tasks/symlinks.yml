@@ -1,0 +1,7 @@
+---
+- name: create data symlinks
+  file:
+    src: "{{ item.from }}"
+    dest: "{{ item.to }}"
+    state: link
+  with_items: "{{ symlinks }}"
