@@ -73,4 +73,6 @@ ansible_run_file: pia-linux-3.3.1-06924.run
 
 devices:
   - device: /dev/nvme1n1p1
-    mount: /data/games
+    mount: /games
+  - device: /dev/nvme0n1p3
+    mount: /data
